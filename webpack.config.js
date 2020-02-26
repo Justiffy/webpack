@@ -7,7 +7,8 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: './src/index.tsx',
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
   },
 
@@ -17,6 +18,20 @@ module.exports = {
       template: './index.html',
     }),
   ],
+
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      }
+    } 
+  },
 
   devServer: {
     contentBase: './dist',
