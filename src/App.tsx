@@ -7,6 +7,7 @@ const HiddenContent = React.lazy(() => import(
 import Icon from './assets/Boom.svg'
 
 import './App.css'
+import './globalStyles.css'
 
 function App() {
   const [isVisible, setVisibile] = React.useState(false);
@@ -17,7 +18,7 @@ function App() {
 
   return(
     <div onClick={handleVisible} className="wrapper">
-      Icon ?! ->
+      <span className="title">Icon ?! -></span>
       <Icon width={24} height={24} />
       {isVisible && (
         <React.Suspense fallback={<div>test</div>}>
